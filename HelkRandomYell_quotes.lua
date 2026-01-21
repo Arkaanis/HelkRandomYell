@@ -1,4 +1,6 @@
-HRYells = {
+local _, HelkRandomYell = ...
+
+HelkRandomYell.HRYells = {
   "Stooop! I could've dropped my croissaaaant!",
   "Do you have any idea who I think I am?!",
   "FREE SHAVOCADOOS!!!",

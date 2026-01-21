@@ -1,3 +1,4 @@
+local _, HelkRandomYell = ...
 local f = CreateFrame("Frame")
 f:RegisterEvent("ADDON_LOADED")
 f:SetScript("OnEvent", function(self, event, addon)
@@ -13,9 +14,9 @@ f:SetScript("OnEvent", function(self, event, addon)
 
         -- the actual onclick function that picks a random quote from the global HRYells variable
         function RandomYell_OnClick()
-          if #HRYells > 0 then
-            local randIndex = math.random(#HRYells)
-            SendChatMessage(HRYells[randIndex], "Yell")
+          if #HelkRandomYell.HRYells > 0 then
+            local randIndex = math.random(#HelkRandomYell.HRYells)
+            SendChatMessage(HelkRandomYell.HRYells[randIndex], "Yell")
           end
         end
         
