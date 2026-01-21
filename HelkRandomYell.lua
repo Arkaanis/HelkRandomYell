@@ -11,6 +11,7 @@ f:SetScript("OnEvent", function(self, event, addon)
             RandomYellButton:SetScript("OnClick", RandomYell_OnClick())
         end
 
+        -- the actual onclick function that picks a random quote from the global HRYells variable
         function RandomYell_OnClick()
           if #HRYells > 0 then
             local randIndex = math.random(#HRYells)
@@ -34,7 +35,8 @@ f:SetScript("OnEvent", function(self, event, addon)
         end
         
         self:UnregisterEvent("ADDON_LOADED")
-    elseif event == "PLAYER_LOGOUT" then
+
+    elseif event == "PLAYER_LOGOUT" then --get the local position and save it to the global variable on logout
         if RandomYellButton then
             local point, relPoint, ofsx, ofsy = RandomYellButton:GetPoint(1)
             HRYButtonPosition.point, HRYButtonPosition.relPoint, HRYButtonPosition.ofsx, HRYButtonPosition.ofsy = point, relPoint, ofsx, ofsy
