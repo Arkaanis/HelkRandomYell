@@ -1,0 +1,10 @@
+## Interface: 120000  ## Keep updating this every patch
+## Title: Helk Random Yell
+## Notes: Stores text lines and yells a random one when you click the buttom
+## Version: 1.0
+
+##SavedVariables: HRYButtonPosition, HRYells
+
+HelkRandomYell.xml
+HelkRandomYell.lua
+HelkRandomYell_quotes.lua

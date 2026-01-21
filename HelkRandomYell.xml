@@ -1,0 +1,22 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\Blizzard_SharedXML\UI.xsd">
+
+  <Script file="HelkRandomYell.lua"/>
+
+  <Frame name="RandomYellFrame" parent="UIParent" movable="true" enableMouse="true">
+    <Frames>
+      <Button name="RandomYellButton" inherits="UIPanelButtonTemplate" text="Yell Stuff!">
+        <Anchors>
+          <Anchor point="TOPLEFT"/>
+        </Anchors>
+        <Size>
+          <AbsDimension x="100" y="30"/>
+        </Size>
+        <Scripts>
+          <OnClick>RandomYell_OnClick()</OnClick>
+        </Scripts>
+      </Button>
+    </Frames>
+  </Frame>
+</Ui>
