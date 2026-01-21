@@ -10,7 +10,7 @@ You can edit the <code>HelkRandomYell_quotes.lua</code> file with your own quote
 
 If you want to increase the odds of a certain quote being chosen, simply add it multiple times
 
-
+You can also add <code>/click RandomYellButton</code> in any macro to say a random quote when you use a cooldown, for example
 
 
 <i>Made by Shalkar for the guild HELKPO on The Venture Co / Defias Brotherhood - EU</i>
