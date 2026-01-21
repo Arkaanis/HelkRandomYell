@@ -6,7 +6,7 @@ Clicking the button picks a quote randomly from the list inside the <code>HelkRa
 
 You can click and drag the button to move it (position will be saved when you log out)
 
-You can edit the <code>HElkRandomYell_quotes.lua</code> file with your own quotes - you can have as few or as many as you want
+You can edit the <code>HelkRandomYell_quotes.lua</code> file with your own quotes - you can have as few or as many as you want
 
 If you want to increase the odds of a certain quote being chosen, simply add it multiple times
 
