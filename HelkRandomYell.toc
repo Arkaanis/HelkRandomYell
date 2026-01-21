@@ -1,7 +1,7 @@
-## Interface: 120000  ## Keep updating this every patch
+## Interface: 120001, 120000
 ## Title: Helk Random Yell
 ## Notes: Stores text lines and yells a random one when you click the buttom
-## Version: 1.0
+## Version: 12.0.1.2
 
 ##SavedVariables: HRYButtonPosition
 
