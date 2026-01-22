@@ -1,4 +1,6 @@
 local _, HelkRandomYell = ...
+local lastYellTime = 0
+local yellCooldown = 1
 local f = CreateFrame("Frame")
 f:RegisterEvent("ADDON_LOADED")
 f:SetScript("OnEvent", function(self, event, addon)
@@ -9,14 +11,26 @@ f:SetScript("OnEvent", function(self, event, addon)
             RandomYellButton = CreateFrame("Button", "RandomYellButton", UIParent, "UIPanelButtonTemplate")
             RandomYellButton:SetSize(100, 30)
             RandomYellButton:SetText("Yell Stuff!")
-            RandomYellButton:SetScript("OnClick", RandomYell_OnClick())
+            RandomYellButton:SetScript("OnClick", RandomYell_OnClick)
         end
 
         -- the actual onclick function that picks a random quote from the global HRYells variable
         function RandomYell_OnClick()
-          if #HelkRandomYell.HRYells > 0 then
-            local randIndex = math.random(#HelkRandomYell.HRYells)
-            SendChatMessage(HelkRandomYell.HRYells[randIndex], "Yell")
+          local now = GetTime()  
+          if now - lastYellTime < yellCooldown then
+            print("Yell on cooldown")
+            return
+          end
+          local yells = HelkRandomYell.HRYells
+          local randIndex
+          if #yells > 0 then
+            local randIndex
+            repeat
+              randIndex = math.random(1, #yells)
+            until randIndex ~= lastYellIndex or lastYellIndex == 0
+            SendChatMessage(yells[randIndex], "YELL", nil, nil)
+            lastYellIndex = randIndex
+            lastYellTime = now
           end
         end
         
