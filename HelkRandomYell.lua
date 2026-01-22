@@ -8,15 +8,7 @@ f:RegisterEvent("ADDON_LOADED")
 f:SetScript("OnEvent", function(self, event, addon)
     if event == "ADDON_LOADED" and addon == "HelkRandomYell" then
         local lastYellTime = 0
-        local yellCooldown = 1        
-        
-        -- check if we already made the button, if not make it now
-        if not RandomYellButton then
-            RandomYellButton = CreateFrame("Button", "RandomYellButton", UIParent, "UIPanelButtonTemplate")
-            RandomYellButton:SetSize(100, 30)
-            RandomYellButton:SetText("Yell Stuff!")
-            RandomYellButton:SetScript("OnClick", RandomYell_OnClick)
-        end
+        local yellCooldown = 1
 
         -- check if we have quotes saved in SavedVars or if we use default
         if HRYQuoteDB.quotes and #HRYQuoteDB.quotes > 0 then
