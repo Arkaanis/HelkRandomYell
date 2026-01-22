@@ -1,6 +1,7 @@
 local _, HelkRandomYell = ...
 local lastYellTime = 0
 local yellCooldown = 1
+HRYButtonPosition = HRYButtonPosition or {}
 local f = CreateFrame("Frame")
 f:RegisterEvent("ADDON_LOADED")
 f:SetScript("OnEvent", function(self, event, addon)
