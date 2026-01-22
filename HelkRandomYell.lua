@@ -1,11 +1,14 @@
 local _, HelkRandomYell = ...
-local lastYellTime = 0
-local yellCooldown = 1
 HRYButtonPosition = HRYButtonPosition or {}
+HRYQuoteDB = HRYQuoteDB or {}
+local activeQuotes
+
 local f = CreateFrame("Frame")
 f:RegisterEvent("ADDON_LOADED")
 f:SetScript("OnEvent", function(self, event, addon)
     if event == "ADDON_LOADED" and addon == "HelkRandomYell" then
+        local lastYellTime = 0
+        local yellCooldown = 1        
         
         -- check if we already made the button, if not make it now
         if not RandomYellButton then
@@ -15,21 +18,28 @@ f:SetScript("OnEvent", function(self, event, addon)
             RandomYellButton:SetScript("OnClick", RandomYell_OnClick)
         end
 
-        -- the actual onclick function that picks a random quote from the global HRYells variable
+        -- check if we have quotes saved in SavedVars or if we use default
+        if HRYQuoteDB.quotes and #HRYQuoteDB.quotes > 0 then
+            activeQuotes = HRYQuoteDB.quotes
+        else
+            activeQuotes = HelkRandomYell.defaultQuotes
+        end
+
+        -- the actual onclick function that picks a random quote to yell
         function RandomYell_OnClick()
           local now = GetTime()  
           if now - lastYellTime < yellCooldown then
             print("Yell on cooldown")
             return
           end
-          local yells = HelkRandomYell.HRYells
+          
           local randIndex
-          if #yells > 0 then
+          if #activeQuotes > 0 then
             local randIndex
             repeat
-              randIndex = math.random(1, #yells)
+              randIndex = math.random(1, #activeQuotes)
             until randIndex ~= lastYellIndex or lastYellIndex == 0
-            SendChatMessage(yells[randIndex], "YELL", nil, nil)
+            SendChatMessage(activeQuotes[randIndex], "YELL", nil, nil)
             lastYellIndex = randIndex
             lastYellTime = now
           end
@@ -52,10 +62,15 @@ f:SetScript("OnEvent", function(self, event, addon)
         
         self:UnregisterEvent("ADDON_LOADED")
 
-    elseif event == "PLAYER_LOGOUT" then --get the local position and save it to the global variable on logout
+    elseif event == "PLAYER_LOGOUT" then --save quotes and button positionto SavedVars
         if RandomYellButton then
             local point, relPoint, ofsx, ofsy = RandomYellButton:GetPoint(1)
             HRYButtonPosition.point, HRYButtonPosition.relPoint, HRYButtonPosition.ofsx, HRYButtonPosition.ofsy = point, relPoint, ofsx, ofsy
+        end
+
+        if activeQuotes then --save latest quote list into SavedVars
+            HRYQuoteDB.quotes = activeQuotes
+            print("Quotes saved")
         end
     end
 end)

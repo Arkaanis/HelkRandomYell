@@ -3,7 +3,7 @@
 ## Notes: Stores text lines and yells a random one when you click the buttom
 ## Version: 12.0.1.2
 
-##SavedVariables: HRYButtonPosition
+##SavedVariables: HRYButtonPosition, HRYQuoteDB
 
 HelkRandomYell_quotes.lua
 HelkRandomYell.lua
